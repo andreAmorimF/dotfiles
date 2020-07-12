@@ -1,5 +1,9 @@
-# If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/andredeamorimfonseca/.oh-my-zsh"
@@ -8,7 +12,8 @@ export ZSH="/Users/andredeamorimfonseca/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -83,7 +88,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='nvim'
+  export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -100,17 +105,7 @@ export FZF_DEFAULT_COMMAND='rg --hidden --files'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="nvim"
-alias vf="nvim -o \$(fzf)"
 alias cat="bat"
-alias fzf="fzf -m --height 40% --layout reverse --info inline --border \
-      --preview 'bat --style=numbers --color=always {} | head -500' --preview-window down:5:noborder \
-      --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'"
-
-# Nubank related init
-source $HOME/.nurc
-autoload bashcompinit && bashcompinit
-source "$NU_HOME/nucli/nu.bashcompletion"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
@@ -119,3 +114,6 @@ export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
 # BEGIN ANSIBLE MANAGED BLOCK - RBENV
 eval "$(rbenv init -)"
 # END ANSIBLE MANAGED BLOCK - RBENV
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
