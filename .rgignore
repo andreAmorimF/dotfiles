@@ -1,0 +1,6 @@
+.git
+.cache
+Library/Caches/
+Library/Containers/
+Library/Group Containers/
+
