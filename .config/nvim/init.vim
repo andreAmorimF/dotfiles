@@ -10,6 +10,12 @@ set hidden
 " Enable mouse
 set mouse=a
 
+"line numbers (essential for pair programming)
+set number
+
+" access system clipboard instead of vim internal clipboard
+set clipboard=unnamed
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " NERDCommenter
@@ -54,16 +60,11 @@ Plug 'guns/vim-sexp', { 'for': 'clojure' } | Plug 'tpope/vim-sexp-mappings-for-r
 
 call plug#end()
 
-"Rainbow parentheses
+" Rainbow parentheses
 let g:rainbow_active = 1
 
+" Conjure always on the right
 let g:conjure#log#botright = 1
-
-"line numbers (essential for pair programming)
-set number
-
-" access system clipboard instead of vim internal clipboard
-set clipboard=unnamed
 
 " use <local leader> K to get docstring trough REPL connection
 let g:conjure#mapping#doc_word = "K"
@@ -106,12 +107,27 @@ let g:airline_highlighting_cache = 1
 let g:airline#extensions#ale#enabled = 1
 
 let g:fzf_action = {
-  \ 'return': 'tab split',
+  \ 'return': 'vsplit',
   \ 'ctrl-n': 'e'}
 
+" Improve Rg parameter passing
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+" Assigning Rg behavior to improved function RG
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 " fuzzy search for files of current project
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-o> :Rg<CR>
+nnoremap <Space><Space> :Files<CR>
+nnoremap <Space>s :RG<CR>
+
+" fuzzy search word under the cursor
+nnoremap <Space>* :RG <C-r><C-w><CR>
 
 " copy to system dashboard
 nnoremap <leader>y "+y
@@ -126,6 +142,9 @@ map <C-t><up>    :tabr<CR>
 map <C-t><down>  :tabl<CR>
 map <C-t><left>  :tabp<CR>
 map <C-t><right> :tabn<CR>
+
+" select the whole buffer content
+nnoremap <C-A> ggVG
 
 " easier window navigation
 nmap <silent> <A-Up>    :wincmd k<CR>
