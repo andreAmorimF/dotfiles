@@ -106,11 +106,7 @@ let g:airline_highlighting_cache = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 
-let g:fzf_action = {
-  \ 'return': 'vsplit',
-  \ 'ctrl-n': 'e'}
-
-" Improve Rg parameter passing
+" Improve  Rg parameter passing
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
@@ -137,23 +133,21 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
-" browser like tab navigation
-map <C-t><up>    :tabr<CR>
-map <C-t><down>  :tabl<CR>
-map <C-t><left>  :tabp<CR>
-map <C-t><right> :tabn<CR>
+" buffer navigation
+map gt :bn<cr>
+map gT :bp<cr>
 
 " select the whole buffer content
 nnoremap <C-A> ggVG
 
 " easier window navigation
-nmap <silent> <A-Up>    :wincmd k<CR>
-nmap <silent> <A-Down>  :wincmd j<CR>
-nmap <silent> <A-Left>  :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <C-k>  :wincmd k<CR>
+nmap <silent> <C-j>  :wincmd j<CR>
+nmap <silent> <C-h>  :wincmd h<CR>
+nmap <silent> <C-l>  :wincmd l<CR>
 
-"Edit mapping (make cursor keys work like in Windows: <C-Left><C-Right>
-"Move to next word.
+" Edit mapping (make cursor keys work like in Windows: <C-Left><C-Right>
+" Move to next word.
 nnoremap <C-Left> b
 vnoremap <C-S-Left> b
 nnoremap <C-S-Left> gh<C-O>b
@@ -163,6 +157,12 @@ nnoremap <C-Right> w
 vnoremap <C-S-Right> w
 nnoremap <C-S-Right> gh<C-O>w
 inoremap <C-S-Right> <C-\><C-O>gh<C-O>w
+
+" add nu tap
+map <leader>nt F<space><space>i#nu/tapd<space><esc>
+
+" remove all nu taps
+map <leader>rnt :%s/#nu\/tapd<space>//g<CR><ESC>
 
 " toggle nerdtree
 nmap <Space>t :NERDTreeToggle<CR>
@@ -177,4 +177,3 @@ au VimEnter,VimResume * set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 au VimLeave,VimSuspend * set guicursor=a:ver26
-
