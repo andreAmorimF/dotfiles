@@ -28,7 +28,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/.org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -51,7 +51,49 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/Workspace/nubank"))
+(setq projectile-project-search-path '("~/Workspace/nubank")
+      projectile-enable-caching nil)
 
 ;; Avy all windows
 (setq avy-all-windows t)
+
+;; Change local leader to ','
+(setq doom-localleader-key ",")
+
+;; Lispyville config
+(add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+(add-hook 'lisp-mode-hook #'lispyville-mode)
+
+;; which-key
+(setq which-key-idle-delay 0.4)
+
+;; treemacs
+(setq treemacs-follow-mode t)
+
+;; company
+(setq company-selection-wrap-around t
+      company-minimum-prefix-length 3
+      company-idle-delay 0.4)
+
+;; general mappings
+(map!
+ ; remove default workspace shortcuts
+ :n "C-t" #'better-jumper-jump-backward
+ :n "C-S-t" nil
+ ; move betweeen windows faster in normal mode
+ :m "C-h" #'evil-window-left
+ :m "C-j" #'evil-window-down
+ :m "C-k" #'evil-window-up
+ :m "C-l" #'evil-window-right
+ ; move windows faster in normal mode
+ :m "C-S-h" #'+evil/window-move-left
+ :m "C-S-j" #'+evil/window-move-down
+ :m "C-S-k" #'+evil/window-move-up
+ :m "C-S-l" #'+evil/window-move-right
+ ; move centaur tabs
+ :m "gT" #'centaur-tabs-backward
+ :m "gt" #'centaur-tabs-forward
+ ; misc
+ :n "gc" #'lispyville-comment-or-uncomment
+ :n "-" #'dired-jump
+ :nv "C-SPC" #'+fold/toggle)
