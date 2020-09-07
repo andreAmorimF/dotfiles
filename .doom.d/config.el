@@ -61,7 +61,7 @@
 (setq doom-localleader-key ",")
 
 ;; Lispyville config
-(add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+;; (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
 (add-hook 'lisp-mode-hook #'lispyville-mode)
 
 ;; which-key
@@ -93,24 +93,8 @@
  ; move centaur tabs
  :m "gT" #'centaur-tabs-backward
  :m "gt" #'centaur-tabs-forward
- ; misc
+ ; lispy
  :n "gc" #'lispyville-comment-or-uncomment
- :n ">" #'lispyville->
- :n "<" #'lispyville-<
+ ; misc
  :n "-" #'dired-jump
  :nv "C-SPC" #'+fold/toggle)
-
-;; clojure mode options
-(use-package! clojure-mode
-  :config
-  (setq clojure-indent-style 'align-arguments
-        clojure-thread-all-but-last t
-        clojure-align-forms-automatically t
-        yas-minor-mode 1))
-
-;; load nu scripts
-(let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
-  (when (file-directory-p nudev-emacs-path)
-    (add-to-list 'load-path nudev-emacs-path)
-    (require 'nu nil t)
-    (require 'nu-datomic-query nil t)))
