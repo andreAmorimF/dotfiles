@@ -98,3 +98,9 @@
  ; misc
  :n "-" #'dired-jump
  :nv "C-SPC" #'+fold/toggle)
+
+;; nu scripts
+(let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
+  (when (file-directory-p nudev-emacs-path)
+    (add-to-list 'load-path nudev-emacs-path)
+    (require 'nu)))
