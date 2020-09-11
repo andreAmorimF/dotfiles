@@ -98,8 +98,8 @@ fi
 export FZF_DEFAULT_COMMAND='rg --hidden --files'
 
 # gpg options
-export GPG_TTY=$(tty)
-export PINENTRY_USER_DATA="USE_CURSES=1"
+# export GPG_TTY=$(tty)
+# export PINENTRY_USER_DATA="USE_CURSES=1"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -110,6 +110,12 @@ export PINENTRY_USER_DATA="USE_CURSES=1"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cat="bat"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc'; fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"

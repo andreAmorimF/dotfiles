@@ -2,4 +2,6 @@
 target/
 .jvmopts
 .sbtopts
+.lsp/
+.clj-kondo/
 

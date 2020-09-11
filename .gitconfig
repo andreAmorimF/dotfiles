@@ -10,3 +10,10 @@
 	sigingkey = 8A43827EAAD179F3
 [commit]
 	gpgSign = true
+[core]
+	editor = nvim
+	excludesfile = /Users/andredeamorimfonseca/.gitignore
+[pull]
+	rebase = false
+[includeIf "gitdir:/Users/andredeamorimfonseca/Workspace/nubank/"]
+	path = /Users/andredeamorimfonseca/.nugitconfig

@@ -54,6 +54,9 @@
 (setq projectile-project-search-path '("~/Workspace/nubank")
       projectile-enable-caching nil)
 
+;; Reload buffers when modified on disk
+(setq global-auto-revert-mode t)
+
 ;; Avy all windows
 (setq avy-all-windows t)
 
@@ -63,6 +66,14 @@
 ;; Lispyville config
 ;; (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
 (add-hook 'lisp-mode-hook #'lispyville-mode)
+
+(with-eval-after-load 'lispyville
+  (lispyville-set-key-theme
+   '(operators
+     c-w
+     (escape insert)
+     (prettify insert)
+     (additional-movement normal visual motion))))
 
 ;; which-key
 (setq which-key-idle-delay 0.4)
@@ -75,32 +86,60 @@
       company-minimum-prefix-length 3
       company-idle-delay 0.4)
 
-;; general mappings
-(map!
- ; remove default workspace shortcuts
- :n "C-t" #'better-jumper-jump-backward
- :n "C-S-t" nil
- ; move betweeen windows faster in normal mode
- :m "C-h" #'evil-window-left
- :m "C-j" #'evil-window-down
- :m "C-k" #'evil-window-up
- :m "C-l" #'evil-window-right
- ; move windows faster in normal mode
- :m "C-S-h" #'+evil/window-move-left
- :m "C-S-j" #'+evil/window-move-down
- :m "C-S-k" #'+evil/window-move-up
- :m "C-S-l" #'+evil/window-move-right
- ; move centaur tabs
- :m "gT" #'centaur-tabs-backward
- :m "gt" #'centaur-tabs-forward
- ; lispy
- :n "gc" #'lispyville-comment-or-uncomment
- ; misc
- :n "-" #'dired-jump
- :nv "C-SPC" #'+fold/toggle)
+;; windows rules
+(set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5)
+(set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
+(set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
+
+(use-package! cider
+  :after clojure-mode
+  :config
+  (setq cider-ns-refresh-show-log-buffer t
+        cider-show-error-buffer t;'only-in-repl
+        cider-prompt-for-symbol nil)
+  (set-lookup-handlers! 'cider-mode nil))
+
+(use-package! clj-refactor
+  :after clojure-mode
+  :config
+  (set-lookup-handlers! 'clj-refactor-mode nil)
+  (setq cljr-warn-on-eval nil
+        cljr-eagerly-build-asts-on-startup nil
+        cljr-add-ns-to-blank-clj-files nil
+        cljr-magic-require-namespaces
+        '(("s"   . "schema.core")
+          ("th"  . "common-core.test-helpers")
+          ("gen" . "common-test.generators")
+          ("d-pro" . "common-datomic.protocols.datomic")
+          ("ex" . "common-core.exceptions")
+          ("dth" . "common-datomic.test-helpers")
+          ("t-money" . "common-core.types.money")
+          ("t-time" . "common-core.types.time")
+          ("d" . "datomic.api")
+          ("m" . "matcher-combinators.matchers")
+          ("pp" . "clojure.pprint"))))
+
+(use-package! clojure-mode
+  :config
+  (setq clojure-indent-style 'align-arguments
+        clojure-thread-all-but-last t
+        clojure-align-forms-automatically t
+        yas-minor-mode 1))
 
 ;; nu scripts
-(let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
-  (when (file-directory-p nudev-emacs-path)
-    (add-to-list 'load-path nudev-emacs-path)
-    (require 'nu)))
+;; (let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
+;;   (when (file-directory-p nudev-emacs-path)
+;;     (add-to-list 'load-path nudev-emacs-path)
+;;     (require 'nu)))
+
+(defun nutap ()
+  (interactive)
+  (insert-before-markers "#nu/tapd "))
+
+(defun nutap-clean ()
+  (interactive)
+  (goto-char 1)
+    (while (search-forward "#nu/tapd " nil nil)
+      (replace-match "")))
+
+(load! "+bindings")
