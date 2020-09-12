@@ -92,11 +92,12 @@
 (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
 (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
 
+;; clojure plugins configuration
 (use-package! cider
   :after clojure-mode
   :config
   (setq cider-ns-refresh-show-log-buffer t
-        cider-show-error-buffer t;'only-in-repl
+        cider-show-error-buffer t       ;'only-in-repl
         cider-prompt-for-symbol nil)
   (set-lookup-handlers! 'cider-mode nil))
 
@@ -128,19 +129,21 @@
         yas-minor-mode 1))
 
 ;; nu scripts
-;; (let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
-;;   (when (file-directory-p nudev-emacs-path)
-;;     (add-to-list 'load-path nudev-emacs-path)
-;;     (require 'nu)))
+(let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
+  (when (file-directory-p nudev-emacs-path)
+    (add-to-list 'load-path nudev-emacs-path)
+    (require 'nu)))
 
 (defun nutap ()
+  "Adds '#nu/tapd' before cursor"
   (interactive)
   (insert-before-markers "#nu/tapd "))
 
 (defun nutap-clean ()
+  "Remove all occurences of '#nu/tapd' in current buffer"
   (interactive)
   (goto-char 1)
-    (while (search-forward "#nu/tapd " nil nil)
-      (replace-match "")))
+  (while (search-forward "#nu/tapd " nil nil)
+    (replace-match "")))
 
 (load! "+bindings")
