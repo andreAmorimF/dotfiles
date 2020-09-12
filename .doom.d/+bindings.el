@@ -24,13 +24,13 @@
  :n "-" #'dired-jump
  :nv "C-SPC" #'+fold/toggle)
 
+;; clojure specific mappings
 (map! :after clojure-mode
       :map clojure-mode-map
       :localleader
 
       :desc "Insert '#nu/tapd' before word"
       "d" #'nutap
-
 
       :desc "Clean all '#nu/tapd' occurences in current buffer"
       "D" #'nutap-clean)
