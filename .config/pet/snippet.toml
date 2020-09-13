@@ -1,21 +1,67 @@
 [[snippets]]
-  description = "[nu] Watching pods"
-  command = "watch -n 10 \"nu-<nu=br> k8s ctl --country <country=br> --env <env=prod> --stack-id <stack=blue> <prototype=s0> -- get pods -l nubank.com.br/name=<service=correnteza> --field-selector=status.phase=Running\""
+  description = "ssh into service pod"
+  command = "nu-<nu=br> k8s ssh global <service=veiga> --env <env=staging>"
+  tag = ["nu"]
   output = ""
 
 [[snippets]]
-  description = "[nu] Service health check on all shards"
+  description = "Watching pods"
+  command = "watch -n 10 \"nu-<nu=br> k8s ctl --env <env=prod> --stack-id <stack=blue> <prototype=s0> -- get pods -l nubank.com.br/name=<service=correnteza> --field-selector=status.phase=Running\"" 
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Service health check on all shards"
   command = "nu-<nu=br> on-shards run -- ser curl GET % <service=correnteza> /ops/health"
+  tag = ["nu"]
   output = ""
 
 [[snippets]]
-  description = "[nu] Checking k8s prototype state"
+  description = "Service configuration"
+  command = "nu-<nu=br> ser curl GET --env <env=prod> <prototype=global> <service=barragem> /ops/config/dump | jq . | less"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Scale k8s service"
+  command = "nu-<nu=br> k8s scale --env <env=prod> <prototype=global> <service=barragem> <current> --min <min> --max <max>"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Edit pod configuration"
+  command = "nu-<nu=br> k8s ctl --env \"<env=prod>\" \"<prototype=s0>\" -- edit deploy \"<env=prod>-<prototype=s0>-<stack=blue>-<service=correnteza>-deployment\""
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Cycle a service on a given prototype"
+  command = "nu-<nu=br> k8s cycle --env <env=prod> <prototype=s0> <service>"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Commit dataset empty"
+  command = "nu-<nu=data> datainfra sabesp -- metapod --token --env prod dataset commit <transactionId> <datasetId> PARQUET s3://nu-spark-us-east-1/non-datomic/static-datasets/empty-materialized/empty.gz.parquet"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Checks state of dataset commits and paths"
+  command = "nu-<nu=br> etl info <dataset=dataset/savings-balances> --n=<hit_size=10>"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Checking k8s prototype state"
   command = "nu-<nu=br> k8s ctl <prototype=s0> --env <env=prod> --stack-id blue -- get pods -l nubank.com.br/name=<service=correnteza>"
+  tag = ["nu"]
   output = ""
 
 [[snippets]]
-  description = "[nu] Check logs of previous pods for a service"
+  description = "Check logs of previous pods for a service"
   command = "nu-<nu=br> k8s logs --env <env=prod> --stack-id blue <prototype=s0> <service=correnteza> --pod <pod> -- --previous | less"
+  tag = ["nu"]
   output = ""
 
 [[snippets]]
@@ -49,6 +95,6 @@
   output = ""
 
 [[snippets]]
-  description = "[nu] Cycle a service on a given prototype"
-  command = "nu-<nu=br> k8s cycle --country <country=br> --env <env=prod> <prototype=s0> <service>"
+  description = "Repl into service pod"
+  command = "nu-<nu=data> k8s repl global <service=metapod> --env <env=staging>"
   output = ""
