@@ -65,7 +65,6 @@
 (setq doom-localleader-key ",")
 
 ;; Lispyville config
-;; (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
 (add-hook 'lisp-mode-hook #'lispyville-mode)
 
 (with-eval-after-load 'lispyville
@@ -81,6 +80,9 @@
 
 ;; treemacs
 (setq treemacs-follow-mode t)
+
+;; evil-matchit
+(setq global-evil-matchit-mode 1)
 
 ;; company
 (setq company-selection-wrap-around t
@@ -126,24 +128,24 @@
   (setq clojure-indent-style 'align-arguments
         clojure-thread-all-but-last t
         clojure-align-forms-automatically t
-        yas-minor-mode 1))
+        yas-minor-mode 1)
+
+  (defun nutap ()
+    "Adds '#nu/tapd' before cursor"
+    (interactive)
+    (insert-before-markers "#nu/tapd "))
+
+  (defun nutap-clean ()
+    "Remove all occurences of '#nu/tapd' in current buffer"
+    (interactive)
+    (goto-char 1)
+    (while (search-forward "#nu/tapd " nil nil)
+      (replace-match ""))))
 
 ;; nu scripts
 (let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu)))
-
-(defun nutap ()
-  "Adds '#nu/tapd' before cursor"
-  (interactive)
-  (insert-before-markers "#nu/tapd "))
-
-(defun nutap-clean ()
-  "Remove all occurences of '#nu/tapd' in current buffer"
-  (interactive)
-  (goto-char 1)
-  (while (search-forward "#nu/tapd " nil nil)
-    (replace-match "")))
 
 (load! "+bindings")
