@@ -22,6 +22,9 @@
  :n "gc" #'lispyville-comment-or-uncomment
                                         ; misc
  :n "-" #'dired-jump
+ :n "C-c +" #'evil-numbers/inc-at-pt
+ :n "C-c -" #'evil-numbers/dec-at-pt
+ :ne "C-;" #'avy-goto-char-2
  :nv "C-SPC" #'+fold/toggle)
 
 ;; clojure specific mappings
