@@ -5,4 +5,7 @@ target/
 .lsp/
 .clj-kondo/
 .metals/
+.bloop/
+.ammonite/
+metals.sbt
 

@@ -8,8 +8,6 @@
 [user]
 	email = 1077309+andreAmorimF@users.noreply.github.com
 	sigingkey = 8A43827EAAD179F3
-[commit]
-	gpgSign = true
 [core]
 	editor = nvim
 	excludesfile = /Users/andredeamorimfonseca/.gitignore
