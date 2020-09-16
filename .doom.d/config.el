@@ -97,6 +97,7 @@
   :config
   (set-lookup-handlers! 'clj-refactor-mode nil)
   (setq cljr-warn-on-eval nil
+        cljr-auto-sort-ns t
         cljr-eagerly-build-asts-on-startup nil
         cljr-add-ns-to-blank-clj-files nil
         cljr-magic-require-namespaces
@@ -142,7 +143,14 @@
      (prettify insert)
      (additional-movement normal visual motion))))
 
+(use-package! aggressive-indent
+  :hook ((common-lisp-mode . aggressive-indent-mode)
+         (emacs-lisp-mode . aggressive-indent-mode)
+         (clojure-mode . aggressive-indent-mode)))
+
 (use-package! clojure-mode
+  :init
+  (add-hook 'before-save-hook #'clojure-sort-ns)
   :config
   (setq clojure-indent-style 'align-arguments
         clojure-thread-all-but-last t
