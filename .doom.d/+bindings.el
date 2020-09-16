@@ -35,5 +35,8 @@
       :desc "Insert '#nu/tapd' before word"
       "d" #'nutap
 
+      :desc "Ident buffer/region"
+      "=" #'clojure-align
+
       :desc "Clean all '#nu/tapd' occurences in current buffer"
       "D" #'nutap-clean)

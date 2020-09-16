@@ -64,17 +64,6 @@
 ;; Change local leader to ','
 (setq doom-localleader-key ",")
 
-;; Lispyville config
-(add-hook 'lisp-mode-hook #'lispyville-mode)
-
-(with-eval-after-load 'lispyville
-  (lispyville-set-key-theme
-   '(operators
-     c-w
-     (escape insert)
-     (prettify insert)
-     (additional-movement normal visual motion))))
-
 ;; which-key
 (setq which-key-idle-delay 0.4)
 
@@ -94,7 +83,7 @@
 (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
 (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
 
-;; clojure plugins configuration
+;; clojure related plugins configuration
 (use-package! cider
   :after clojure-mode
   :config
@@ -122,6 +111,36 @@
           ("d" . "datomic.api")
           ("m" . "matcher-combinators.matchers")
           ("pp" . "clojure.pprint"))))
+
+(use-package! lsp-mode
+  :commands lsp
+  :hook ((clojure-mode . lsp)
+         (dart-mode . lsp)
+         (java-mode . lsp))
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil
+        lsp-lens-enable t
+        lsp-signature-auto-activate nil)
+  (dolist (clojure-all-modes '(clojure-mode
+                               clojurec-mode
+                               clojurescript-mode
+                               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,clojure-all-modes . "clojure")))
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+
+(use-package! lispyville
+  :hook ((common-lisp-mode . lispyville-mode)
+         (emacs-lisp-mode . lispyville-mode)
+         (scheme-mode . lispyville-mode)
+         (cider-repl-mode . lispyville-mode)
+         (clojure-mode . lispyville-mode))
+  :config
+  (lispyville-set-key-theme
+   '(operators
+     c-w
+     (escape insert)
+     (prettify insert)
+     (additional-movement normal visual motion))))
 
 (use-package! clojure-mode
   :config
