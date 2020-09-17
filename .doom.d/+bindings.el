@@ -40,3 +40,17 @@
 
       :desc "Clean all '#nu/tapd' occurences in current buffer"
       "D" #'nutap-clean)
+
+(map! :after lsp-mode
+      :map lsp-ui-peek-mode-map
+      "h" #'lsp-ui-peek--select-prev-file
+      "j" #'lsp-ui-peek--select-next
+      "k" #'lsp-ui-peek--select-prev
+      "l" #'lsp-ui-peek--select-next-file)
+
+(map! :after lsp-mode
+      :map lsp-ui-mode-map
+      :n "pd" #'lsp-ui-peek-find-definitions
+      :n "pr" #'lsp-ui-peek-find-references
+      :n "H"  #'lsp-ui-peek-jump-backward
+      :n "L"  #'lsp-ui-peek-jump-forward)

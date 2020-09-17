@@ -83,6 +83,41 @@
 (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
 (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
 
+;; Aggresive indent
+(use-package! aggressive-indent
+  :hook ((common-lisp-mode . aggressive-indent-mode)
+         (emacs-lisp-mode . aggressive-indent-mode)
+         (clojure-mode . aggressive-indent-mode)
+         (python-mode . aggressive-indent-mode)))
+
+;; lsp related config
+(use-package! lsp-mode
+  :commands lsp
+  :hook ((clojure-mode . lsp)
+         (dart-mode    . lsp)
+         (java-mode    . lsp)
+         (python-mode  . lsp)
+         (ruby-mode    . lsp)
+         (scala-mode   . lsp))
+  :config
+  (setq lsp-headerline-breadcrumb-enable nil
+        lsp-lens-enable t
+        lsp-signature-auto-activate nil)
+  (dolist (clojure-all-modes '(clojure-mode
+                               clojurec-mode
+                               clojurescript-mode
+                               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,clojure-all-modes . "clojure")))
+  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+
+(use-package! lsp-ui-mode
+  :after lsp-mode
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-sideline-show-code-actions nil
+        lsp-ui-doc-include-signature nil
+        lsp-ui-peek-fontify 'always))
+
 ;; clojure related plugins configuration
 (use-package! cider
   :after clojure-mode
@@ -113,22 +148,6 @@
           ("m" . "matcher-combinators.matchers")
           ("pp" . "clojure.pprint"))))
 
-(use-package! lsp-mode
-  :commands lsp
-  :hook ((clojure-mode . lsp)
-         (dart-mode . lsp)
-         (java-mode . lsp))
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil
-        lsp-lens-enable t
-        lsp-signature-auto-activate nil)
-  (dolist (clojure-all-modes '(clojure-mode
-                               clojurec-mode
-                               clojurescript-mode
-                               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,clojure-all-modes . "clojure")))
-  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
-
 (use-package! lispyville
   :hook ((common-lisp-mode . lispyville-mode)
          (emacs-lisp-mode . lispyville-mode)
@@ -142,11 +161,6 @@
      (escape insert)
      (prettify insert)
      (additional-movement normal visual motion))))
-
-(use-package! aggressive-indent
-  :hook ((common-lisp-mode . aggressive-indent-mode)
-         (emacs-lisp-mode . aggressive-indent-mode)
-         (clojure-mode . aggressive-indent-mode)))
 
 (use-package! clojure-mode
   :init
