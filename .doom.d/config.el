@@ -90,6 +90,12 @@
          (clojure-mode . aggressive-indent-mode)
          (python-mode . aggressive-indent-mode)))
 
+;; nyan mode
+(use-package nyan-mode
+  :config
+  (setq nyan-wavy-trail t
+        nyan-animate-nyancat t))
+
 ;; lsp related config
 (use-package! lsp-mode
   :commands lsp
