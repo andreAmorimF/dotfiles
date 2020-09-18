@@ -93,8 +93,8 @@
 ;; nyan mode
 (use-package nyan-mode
   :config
-  (setq nyan-wavy-trail t
-        nyan-animate-nyancat t))
+  (setq nyan-wavy-trail nil
+        nyan-animate-nyancat nil))
 
 ;; lsp related config
 (use-package! lsp-mode
@@ -175,6 +175,7 @@
   (setq clojure-indent-style 'align-arguments
         clojure-thread-all-but-last t
         clojure-align-forms-automatically t
+        comment-start ";"
         yas-minor-mode 1)
 
   (defun nutap ()
