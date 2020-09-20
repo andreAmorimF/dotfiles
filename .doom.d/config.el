@@ -58,6 +58,9 @@
 ;; Reload buffers when modified on disk
 (setq global-auto-revert-mode t)
 
+;; Increase the amount of data which Emacs reads from the process
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; Avy all windows
 (setq avy-all-windows t)
 
@@ -75,8 +78,9 @@
 
 ;; company
 (setq company-selection-wrap-around t
-      company-minimum-prefix-length 3
-      company-idle-delay 0.4)
+      company-tooltip-align-annotations t
+      company-minimum-prefix-length 2
+      company-idle-delay 0.0)
 
 ;; windows rules
 (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5)
@@ -108,6 +112,7 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-lens-enable t
+        lsp-enable-semantic-highlighting t
         lsp-signature-auto-activate nil)
   (dolist (clojure-all-modes '(clojure-mode
                                clojurec-mode
@@ -120,8 +125,17 @@
   :after lsp-mode
   :commands lsp-ui-mode
   :config
-  (setq lsp-ui-sideline-show-code-actions nil
-        lsp-ui-doc-include-signature nil
+  (setq lsp-ui-doc-include-signature nil
+        lsp-ui-doc-position 'top
+        lsp-ui-doc-header t
+        lsp-ui-doc-enable t
+        lsp-ui-doc-include-signature t
+        lsp-ui-doc-use-childframe t
+        lsp-ui-sideline-show-hover t
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-sideline-show-symbol t
+        lsp-ui-doc-border (doom-color 'fg)
         lsp-ui-peek-fontify 'always))
 
 ;; clojure related plugins configuration
