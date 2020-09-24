@@ -51,7 +51,7 @@
 
 (map! :after lsp-mode
       :map lsp-ui-mode-map
-      :n "pd" #'lsp-ui-peek-find-definitions
-      :n "pr" #'lsp-ui-peek-find-references
+      :n "gd" #'lsp-ui-peek-find-definitions
+      :n "gr" #'lsp-ui-peek-find-references
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)

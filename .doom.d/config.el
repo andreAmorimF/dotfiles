@@ -67,6 +67,10 @@
 ;; Change local leader to ','
 (setq doom-localleader-key ",")
 
+;;  ranger
+(setq ranger-preview-file t
+      ranger-show-hidden t)
+
 ;; which-key
 (setq which-key-idle-delay 0.4)
 
@@ -91,8 +95,11 @@
 (use-package! aggressive-indent
   :hook ((common-lisp-mode . aggressive-indent-mode)
          (emacs-lisp-mode . aggressive-indent-mode)
-         (clojure-mode . aggressive-indent-mode)
-         (python-mode . aggressive-indent-mode)))
+         (clojure-mode . aggressive-indent-mode))
+  :config (add-to-list
+           'aggressive-indent-dont-indent-if
+           '(and (stringp buffer-file-name)
+                 (string-match "\\.edn\\'" buffer-file-name))))
 
 ;; nyan mode
 (use-package nyan-mode
@@ -183,8 +190,6 @@
      (additional-movement normal visual motion))))
 
 (use-package! clojure-mode
-  :init
-  (add-hook 'before-save-hook #'clojure-sort-ns)
   :config
   (setq clojure-indent-style 'align-arguments
         clojure-thread-all-but-last t

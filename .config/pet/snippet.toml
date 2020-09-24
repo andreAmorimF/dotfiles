@@ -5,8 +5,23 @@
   output = ""
 
 [[snippets]]
+  description = "Xargs + seq date example"
+  command = "for d in $(seq 1 <num-days=30>); do echo <input-to-concat>$(date -d \"<yyyyMMdd> $d days\" +%Y%m%d); done | xargs -P <batch> -n 1 <command>"
+  output = ""
+
+[[snippets]]
+  description = "Xargs + for example"
+  command = "for i in {01..<max=20>}; do echo <input-to-concat>$i; done | xargs -P <batch> -n 1 <command>"
+  output = ""
+
+[[snippets]]
+  description = "Weather"
+  command = "curl wttr.in/Berlin"
+  output = ""
+
+[[snippets]]
   description = "Watching pods"
-  command = "watch -n 10 \"nu-<nu=br> k8s ctl --env <env=prod> --stack-id <stack=blue> <prototype=s0> -- get pods -l nubank.com.br/name=<service=correnteza> --field-selector=status.phase=Running\"" 
+  command = "watch -n 10 \"nu-<nu=br> k8s ctl --env <env=prod> --stack-id <stack=blue> <prototype=s0> -- get pods -l nubank.com.br/name=<service=correnteza> --field-selector=status.phase=Running\""
   tag = ["nu"]
   output = ""
 
@@ -29,6 +44,21 @@
   output = ""
 
 [[snippets]]
+  description = "Repl into service pod"
+  command = "nu-<nu=data> k8s repl global <service=metapod> --env <env=staging>"
+  output = ""
+
+[[snippets]]
+  description = "My public ip"
+  command = "curl eth0.me"
+  output = ""
+
+[[snippets]]
+  description = "Improved Weather"
+  command = "curl -s \"https://wttr.in/Berlin?m2F&format=v2\""
+  output = ""
+
+[[snippets]]
   description = "Edit pod configuration"
   command = "nu-<nu=br> k8s ctl --env \"<env=prod>\" \"<prototype=s0>\" -- edit deploy \"<env=prod>-<prototype=s0>-<stack=blue>-<service=correnteza>-deployment\""
   tag = ["nu"]
@@ -38,6 +68,11 @@
   description = "Cycle a service on a given prototype"
   command = "nu-<nu=br> k8s cycle --env <env=prod> <prototype=s0> <service>"
   tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Counting descriptors by process"
+  command = "lsof -n | ruby -e 'h = Hash.new(0); STDIN.each_line{|l| h[l.split[1]] += 1}; p h.to_a.sort{|a,b| a[1] <=> b[1]}'"
   output = ""
 
 [[snippets]]
@@ -65,36 +100,7 @@
   output = ""
 
 [[snippets]]
-  description = "Xargs + seq date example"
-  command = "for d in $(seq 1 <num-days=30>); do echo <input-to-concat>$(date -d \"<yyyyMMdd> $d days\" +%Y%m%d); done | xargs -P <batch> -n 1 <command>"
-  output = ""
-
-[[snippets]]
-  description = "Xargs + for example"
-  command = "for i in {01..<max=20>}; do echo <input-to-concat>$i; done | xargs -P <batch> -n 1 <command>"
-  output = ""
-
-[[snippets]]
-  description = "Weather"
-  command = "curl wttr.in/Berlin"
-  output = ""
-
-[[snippets]]
-  description = "My public ip"
-  command = "curl eth0.me"
-  output = ""
-
-[[snippets]]
-  description = "Improved Weather"
-  command = "curl -s \"https://wttr.in/Berlin?m2F&format=v2\""
-  output = ""
-
-[[snippets]]
-  description = "Counting descriptors by process"
-  command = "lsof -n | ruby -e 'h = Hash.new(0); STDIN.each_line{|l| h[l.split[1]] += 1}; p h.to_a.sort{|a,b| a[1] <=> b[1]}'"
-  output = ""
-
-[[snippets]]
-  description = "Repl into service pod"
-  command = "nu-<nu=data> k8s repl global <service=metapod> --env <env=staging>"
+  description = "Getting path for given resource on dataset-series"
+  command = "nu-<country=br> ser curl GET --env <env=staging> global ouroboros /api/admin/debug/resource/<resource-id>"
+  tag = ["nu"]
   output = ""
