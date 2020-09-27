@@ -59,6 +59,12 @@
   output = ""
 
 [[snippets]]
+  description = "Getting path for given resource on dataset-series"
+  command = "nu-<country=br> ser curl GET --env <env=staging> global ouroboros /api/admin/debug/resource/<resource-id>"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
   description = "Edit pod configuration"
   command = "nu-<nu=br> k8s ctl --env \"<env=prod>\" \"<prototype=s0>\" -- edit deploy \"<env=prod>-<prototype=s0>-<stack=blue>-<service=correnteza>-deployment\""
   tag = ["nu"]
@@ -100,7 +106,7 @@
   output = ""
 
 [[snippets]]
-  description = "Getting path for given resource on dataset-series"
-  command = "nu-<country=br> ser curl GET --env <env=staging> global ouroboros /api/admin/debug/resource/<resource-id>"
+  description = "Uncommit dataset and predecessors"
+  command = "nu datainfra hausmeister dataset-uncommit <transaction-id> <dataset-name> --include-predecessors"
   tag = ["nu"]
   output = ""

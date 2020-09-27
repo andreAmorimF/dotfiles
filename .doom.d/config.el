@@ -200,7 +200,7 @@
   (defun nutap ()
     "Adds '#nu/tapd' before cursor"
     (interactive)
-    (insert-before-markers "#nu/tapd "))
+    (insert-before-markers " #nu/tapd "))
 
   (defun nutap-clean ()
     "Remove all occurences of '#nu/tapd' in current buffer"
