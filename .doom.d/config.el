@@ -86,7 +86,15 @@
       company-minimum-prefix-length 2
       company-idle-delay 0.0)
 
-;; windows rules
+
+;; Magit split window config
+(add-to-list 'display-buffer-alist '("magit"
+                                     (display-buffer-reuse-window display-buffer-in-side-window)
+                                     (side . right)
+                                     (window-width . 0.4)
+                                     (reusable-frames . nil)))
+
+;; Other windows rules
 (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5)
 (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
 (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
@@ -100,21 +108,6 @@
            'aggressive-indent-dont-indent-if
            '(and (stringp buffer-file-name)
                  (string-match "\\.edn\\'" buffer-file-name))))
-
-;; Magit split window config
-(use-package! magit
-  :config
-  (add-to-list 'display-buffer-alist '("magit"
-                                       (display-buffer-reuse-window display-buffer-in-side-window)
-                                       (side . right)
-                                       (window-width . 0.4)
-                                       (reusable-frames . nil)))
-  (add-to-list 'display-buffer-alist '("magit-diff"
-                                       (display-buffer-reuse-window display-buffer-in-side-window)
-                                       (side . right)
-                                       (slot . 1)
-                                       (window-width . 0.4)
-                                       (reusable-frames . nil))))
 
 ;; nyan mode
 (use-package nyan-mode

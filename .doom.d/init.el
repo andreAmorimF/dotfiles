@@ -38,7 +38,8 @@
        ;;nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup +defaults)   ; tame sudden yet inevitable temporary windows
+       (popup +all
+              +defaults)   ; tame sudden yet inevitable temporary windows
        ligatures         ; ligatures or substitute text with pretty symbols
        tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
@@ -53,7 +54,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -79,7 +80,8 @@
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       (spell +everywhere) ; tasing you for misspelling mispelling
+       (spell +aspell
+              +everywhere) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 
        :tools

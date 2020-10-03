@@ -117,13 +117,18 @@ if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc' ]; t
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc'; fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
-[[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
-
 # BEGIN ANSIBLE MANAGED BLOCK - RBENV
 eval "$(rbenv init -)"
 # END ANSIBLE MANAGED BLOCK - RBENV
 
+# Virtualenv wrapper configuration
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
+[[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
