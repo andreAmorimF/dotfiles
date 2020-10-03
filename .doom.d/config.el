@@ -64,7 +64,7 @@
 ;; Avy all windows
 (setq avy-all-windows t)
 
-;; Change local leader to ','
+;; Change  local leader to ','
 (setq doom-localleader-key ",")
 
 ;;  ranger
@@ -86,17 +86,10 @@
       company-minimum-prefix-length 2
       company-idle-delay 0.0)
 
-
-;; Magit split window config
-(add-to-list 'display-buffer-alist '("magit"
-                                     (display-buffer-reuse-window display-buffer-in-side-window)
-                                     (side . right)
-                                     (window-width . 0.4)
-                                     (reusable-frames . nil)))
-
 ;; Other windows rules
 (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5)
 (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
+(set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t)
 (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
 
 ;; Aggressive indent
