@@ -86,12 +86,6 @@
       company-minimum-prefix-length 2
       company-idle-delay 0.0)
 
-;; Other windows rules
-(set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5)
-(set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
-(set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t)
-(set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5)
-
 ;; Aggressive indent
 (use-package! aggressive-indent
   :hook ((common-lisp-mode . aggressive-indent-mode)
@@ -101,12 +95,6 @@
            'aggressive-indent-dont-indent-if
            '(and (stringp buffer-file-name)
                  (string-match "\\.edn\\'" buffer-file-name))))
-
-;; nyan mode
-(use-package nyan-mode
-  :config
-  (setq nyan-wavy-trail nil
-        nyan-animate-nyancat nil))
 
 ;; lsp related config
 (use-package! lsp-mode
@@ -216,4 +204,13 @@
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu)))
 
+;; Other windows rules
+(after! magit
+  (set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t))
+(after! cider
+  (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5 :select t)
+  (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
+  (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5))
+
+;; Key bindings definitions
 (load! "+bindings")

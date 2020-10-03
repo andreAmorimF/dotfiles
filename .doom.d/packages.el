@@ -10,7 +10,6 @@
 ;(package! some-package)
 (package! evil-matchit)
 (package! command-log-mode)
-(package! nyan-mode)
 (package! org-fancy-priorities)
 (package! evil-numbers)
 (package! aggressive-indent)
