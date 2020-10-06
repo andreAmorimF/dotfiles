@@ -10,11 +10,15 @@ set hidden
 " Enable mouse
 set mouse=a
 
-"line numbers (essential for pair programming)
+" Line numbers (essential for pair programming)
 set number
 
 " access system clipboard instead of vim internal clipboard
 set clipboard=unnamed
+
+" changing leaders
+let mapleader=','
+let maplocalleader = "/"
 
 call plug#begin('~/.local/share/nvim/plugged')
 

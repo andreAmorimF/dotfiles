@@ -206,7 +206,8 @@
 
 ;; Other windows rules
 (after! magit
-  (set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t))
+  (set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t)
+  (set-popup-rule! "^.*magit-diff" :side 'bottom :height 0.6))
 (after! cider
   (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5 :select t)
   (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
