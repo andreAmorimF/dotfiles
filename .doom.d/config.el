@@ -84,7 +84,10 @@
 (setq company-selection-wrap-around t
       company-tooltip-align-annotations t
       company-minimum-prefix-length 2
+      company-show-numbers t
       company-idle-delay 0.0)
+
+(add-to-list 'company-backends #'company-tabnine)
 
 ;; Aggressive indent
 (use-package! aggressive-indent

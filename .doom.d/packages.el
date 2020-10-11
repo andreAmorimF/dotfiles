@@ -9,6 +9,7 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! evil-matchit)
+(package! company-tabnine)
 (package! command-log-mode)
 (package! org-fancy-priorities)
 (package! evil-numbers)
