@@ -18,6 +18,8 @@
                                         ; move centaur tabs
  :m "gT" #'centaur-tabs-backward
  :m "gt" #'centaur-tabs-forward
+ :m "s-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
+ :m "s-}" #'centaur-tabs-forward
                                         ; lispy
  :n "gc" #'lispyville-comment-or-uncomment
                                         ; misc
@@ -52,6 +54,7 @@
 (map! :after lsp-mode
       :map lsp-ui-mode-map
       :n "gd" #'lsp-ui-peek-find-definitions
+      :n "s-b" #'lsp-ui-peek-find-definitions ; idea-like
       :n "gr" #'lsp-ui-peek-find-references
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)
