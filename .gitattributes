@@ -1,0 +1,6 @@
+*.rb diff=ruby
+*.rake diff=ruby
+*.py diff=python
+*.java diff=java
+*.md diff=markdown
+

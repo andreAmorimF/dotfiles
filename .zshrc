@@ -109,7 +109,7 @@ export FZF_DEFAULT_COMMAND='rg --hidden --files'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cat="bat"
+# alias cat="bat"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc'; fi
@@ -133,3 +133,5 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
 [[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bitcomplete bit

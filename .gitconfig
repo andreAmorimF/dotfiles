@@ -10,6 +10,7 @@
 [core]
 	editor = nvim
 	excludesfile = /Users/andredeamorimfonseca/.gitignore
+	attributesfile = /Users/andredeamorimfonseca/.gitattributes
 [pull]
 	rebase = false
 [includeIf "gitdir:/Users/andredeamorimfonseca/Workspace/nubank/"]

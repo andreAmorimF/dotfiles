@@ -24,7 +24,10 @@
  :n "gc" #'lispyville-comment-or-uncomment
                                         ; misc
  :n "-" #'dired-jump
- :n "s-t" #'magit-pull-from-upstream 
+ :n "s-t" #'magit-pull-from-upstream
+ :nv "s-d" #'evil-multiedit-match-and-next
+ :nv "s-D" #'evil-multiedit-match-and-prev
+ :v "R" #'evil-multiedit-match-all
  :n "C-c +" #'evil-numbers/inc-at-pt
  :n "C-c -" #'evil-numbers/dec-at-pt
  :ne "C-;" #'avy-goto-char-2
