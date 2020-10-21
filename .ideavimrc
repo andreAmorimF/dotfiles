@@ -1,3 +1,6 @@
 
 set clipboard+=unnamed
 
+" deletes instead of cutting
+nnoremap d "_d
+vnoremap d "_d

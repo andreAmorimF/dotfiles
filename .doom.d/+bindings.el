@@ -23,6 +23,7 @@
                                         ; lispy
  :n "gc" #'lispyville-comment-or-uncomment
                                         ; misc
+ :n "d" #'evil-delete-into-null-register
  :n "-" #'dired-jump
  :n "s-t" #'magit-pull-from-upstream
  :nv "s-d" #'evil-multiedit-match-and-next
@@ -61,3 +62,9 @@
       :n "gr" #'lsp-ui-peek-find-references
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)
+
+;;  "d" do not copy into register, just deletes
+(evil-define-operator evil-delete-into-null-register (beg end type register yank-handler)
+  "Delete text from BEG to END with TYPE. Do not save it in any register."
+  (interactive "<R><x><y>")
+  (evil-delete beg end type ?_ yank-handler))

@@ -137,6 +137,10 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
+" deletes instead of cutting
+nnoremap d "_d
+vnoremap d "_d
+
 " buffer navigation
 map gt :bn<cr>
 map gT :bp<cr>

@@ -26,6 +26,12 @@
   output = ""
 
 [[snippets]]
+  description = "Uncommit dataset and predecessors"
+  command = "nu datainfra hausmeister dataset-uncommit <transaction-id> <dataset-name> --include-predecessors"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
   description = "Service health check on all shards"
   command = "nu-<nu=br> on-shards run -- ser curl GET % <service=correnteza> /ops/health"
   tag = ["nu"]
@@ -106,7 +112,7 @@
   output = ""
 
 [[snippets]]
-  description = "Uncommit dataset and predecessors"
-  command = "nu datainfra hausmeister dataset-uncommit <transaction-id> <dataset-name> --include-predecessors"
+  description = "Force attempt checker on all correnteza shards"
+  command = "nu on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
   tag = ["nu"]
   output = ""

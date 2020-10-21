@@ -85,7 +85,7 @@
       company-tooltip-align-annotations t
       company-minimum-prefix-length 2
       company-show-numbers t
-      company-idle-delay 0.0)
+      company-idle-delay 0.2)
 
 (add-to-list 'company-backends #'company-tabnine)
 
