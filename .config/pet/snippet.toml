@@ -71,6 +71,18 @@
   output = ""
 
 [[snippets]]
+  description = "Force attempt checker on all correnteza shards"
+  command = "nu on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Escafrando row count on date range"
+  command = "nu-<nu> ser curl GET global escafandro /api/metrics/<dataset=raw-customers-s0%2Flog>/row-count/range\\?from=<start=2020-10-20>\\&to=<end=2020-10-23> | jq ."
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
   description = "Edit pod configuration"
   command = "nu-<nu=br> k8s ctl --env \"<env=prod>\" \"<prototype=s0>\" -- edit deploy \"<env=prod>-<prototype=s0>-<stack=blue>-<service=correnteza>-deployment\""
   tag = ["nu"]
@@ -112,7 +124,7 @@
   output = ""
 
 [[snippets]]
-  description = "Force attempt checker on all correnteza shards"
-  command = "nu on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
+  description = "Castor snapshots"
+  command = "nu-<nu> ser curl GET --env prod global castor /api/snapshots/<country=BR>/<prototype=s2>/<database=pumbaa> | jq ."
   tag = ["nu"]
   output = ""
