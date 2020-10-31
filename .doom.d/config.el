@@ -213,7 +213,7 @@
   (set-popup-rule! "^.*magit" :slot -1 :side 'right :width 0.4 :select t)
   (set-popup-rule! "^.*magit.*popup.*" :actions '(display-buffer-below-selected))
   (set-popup-rule! "^.*magit-revision" :slot 0 :side 'right :width 0.4 :select t)
-  (set-popup-rule! "^.*magit-diff" :slot 0 :side 'right :height 0.6))
+  (set-popup-rule! "^.*magit-diff" :slot 0 :side 'right :width 0.5 :height 0.6))
 (after! cider
   (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5 :select t)
   (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
