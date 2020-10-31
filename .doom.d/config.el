@@ -113,6 +113,7 @@
         lsp-lens-enable t
         lsp-enable-semantic-highlighting t
         lsp-signature-auto-activate nil)
+  (push "[/\\\\][^/\\\\]*\\.\\(json\\|pyc\\|class\\)$" lsp-file-watch-ignored)
   (dolist (clojure-all-modes '(clojure-mode
                                clojurec-mode
                                clojurescript-mode

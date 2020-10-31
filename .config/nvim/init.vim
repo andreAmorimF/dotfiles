@@ -124,7 +124,7 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " fuzzy search for files of current project
 nnoremap <Space><Space> :Files<CR>
-nnoremap <Space>s :RG<CR>
+nnoremap <Space>/ :RG<CR>
 
 " fuzzy search word under the cursor
 nnoremap <Space>* :RG <C-r><C-w><CR>

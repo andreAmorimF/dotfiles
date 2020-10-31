@@ -67,4 +67,4 @@
 (evil-define-operator evil-delete-into-null-register (beg end type register yank-handler)
   "Delete text from BEG to END with TYPE. Do not save it in any register."
   (interactive "<R><x><y>")
-  (evil-delete beg end type ?_ yank-handler))
+  (lispyville-delete beg end type ?_ yank-handler))
