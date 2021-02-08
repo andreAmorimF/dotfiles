@@ -83,9 +83,8 @@
 ;; company
 (setq company-selection-wrap-around t
       company-tooltip-align-annotations t
-      company-minimum-prefix-length 2
       company-show-numbers t
-      company-idle-delay 0.2)
+      company-idle-delay 0.5)
 
 (add-to-list 'company-backends #'company-tabnine)
 
@@ -100,6 +99,12 @@
                  (string-match "\\.edn\\'" buffer-file-name))))
 
 ;; lsp related config
+(setq lsp-ignore-dirs '("[/\\\\][^/\\\\]*\\.\\(json\\|pyc\\|class\\)$"
+                        "[/\\\\]\\.clj-kondo\\'"
+                        "[/\\\\]\\.github\\'"
+                        "[/\\\\]\\.lsp\\'"
+                        "[/\\\\]target\\"))
+
 (use-package! lsp-mode
   :commands lsp
   :hook ((clojure-mode . lsp)
@@ -112,8 +117,8 @@
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-lens-enable t
         lsp-enable-semantic-highlighting t
-        lsp-signature-auto-activate nil)
-  (push "[/\\\\][^/\\\\]*\\.\\(json\\|pyc\\|class\\)$" lsp-file-watch-ignored)
+        lsp-signature-auto-activate nil
+        lsp-file-watch-ignored (append lsp-file-watch-ignored lsp-ignore-dirs))
   (dolist (clojure-all-modes '(clojure-mode
                                clojurec-mode
                                clojurescript-mode
@@ -143,7 +148,7 @@
   :after clojure-mode
   :config
   (setq cider-ns-refresh-show-log-buffer t
-        cider-show-error-buffer t       ;'only-in-repl
+        cider-show-error-buffer 'only-in-repl
         cider-prompt-for-symbol nil)
   (set-lookup-handlers! 'cider-mode nil))
 
@@ -216,7 +221,7 @@
   (set-popup-rule! "^.*magit-diff" :slot 0 :side 'right :width 0.5 :height 0.6))
 (after! cider
   (set-popup-rule! "^\\*cider-repl" :side 'right :width 0.5 :select t)
-  (set-popup-rule! "*cider-test-report*" :side 'right :width 0.5)
+  (set-popup-rule! "*cider-test-report*" '(display-buffer-below-selected))
   (set-popup-rule! "\\*midje-test-report\\*" :side 'right :width 0.5))
 
 ;; Key bindings definitions

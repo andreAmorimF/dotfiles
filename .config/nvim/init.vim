@@ -53,9 +53,6 @@ Plug 'Olical/conjure', { 'tag': 'v4.1.0' } "check if this is still the latest ve
 " Static analysis
 Plug 'dense-analysis/ale', {'for': 'clojure'}
 
-" auto complete
-Plug 'Shougo/deoplete.nvim'
-
 " rainbow parentheses
 Plug 'luochen1990/rainbow'
 
@@ -86,8 +83,8 @@ let g:ale_linters = {
 highlight NormalFloat ctermbg=grey guibg=grey
 
 " deoplete configuration
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
 
 " set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

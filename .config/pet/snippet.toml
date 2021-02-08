@@ -89,6 +89,17 @@
   output = ""
 
 [[snippets]]
+  description = "Describe pod deployment"
+  command = "nu-<nu=br> k8s describe deploy <prototype=s0> <service=correnteza>"
+  tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Deleting attempt to fetch table"
+  command = "nu-<nu=br> on-shards run -- ser curl DELETE % correnteza /api/admin/delete-attempt/<table>"
+  output = ""
+
+[[snippets]]
   description = "Cycle a service on a given prototype"
   command = "nu-<nu=br> k8s cycle --env <env=prod> <prototype=s0> <service>"
   tag = ["nu"]
@@ -135,7 +146,6 @@
   output = ""
 
 [[snippets]]
-  description = "Describe pod deployment"
-  command = "nu-<nu=br> k8s describe deploy <prototype=s0> <service=correnteza>"
-  tag = ["nu"]
+  description = "Refresh correnteza attempt-checker on all shards"
+  command = "nu-<nu-br> on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
   output = ""

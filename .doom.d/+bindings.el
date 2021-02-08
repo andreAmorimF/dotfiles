@@ -5,6 +5,7 @@
                                         ; remove default workspace shortcuts
  :n "C-t" #'better-jumper-jump-backward
  :n "C-S-t" nil
+ :i "C-w" (λ! (let (kill-ring) (backward-kill-word 1))) ; C-w does not put deleted word on kill ring
                                         ; move betweeen windows faster in normal mode
  :m "C-h" #'evil-window-left
  :m "C-j" #'evil-window-down
@@ -22,6 +23,7 @@
  :m "s-}" #'centaur-tabs-forward
                                         ; lispy
  :n "gc" #'lispyville-comment-or-uncomment
+ :n "M-s" #'paredit-splice-sexp
                                         ; misc
  :n "d" #'evil-delete-into-null-register
  :n "-" #'dired-jump
