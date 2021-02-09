@@ -52,7 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/Workspace/nubank")
+(setq projectile-project-search-path '("~/Workspace/nubank" "~/Workspace/others/cardano")
       projectile-enable-caching nil)
 
 ;; Reload buffers when modified on disk
@@ -93,10 +93,12 @@
   :hook ((common-lisp-mode . aggressive-indent-mode)
          (emacs-lisp-mode . aggressive-indent-mode)
          (clojure-mode . aggressive-indent-mode))
-  :config (add-to-list
-           'aggressive-indent-dont-indent-if
-           '(and (stringp buffer-file-name)
-                 (string-match "\\.edn\\'" buffer-file-name))))
+  :config
+  (setq aggressive-indent-sit-for-time 0.2)
+  (add-to-list
+   'aggressive-indent-dont-indent-if
+   '(and (stringp buffer-file-name)
+         (string-match "\\.edn\\'" buffer-file-name))))
 
 ;; lsp related config
 (setq lsp-ignore-dirs '("[/\\\\][^/\\\\]*\\.\\(json\\|pyc\\|class\\)$"

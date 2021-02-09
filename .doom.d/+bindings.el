@@ -21,11 +21,7 @@
  :m "gt" #'centaur-tabs-forward
  :m "s-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
  :m "s-}" #'centaur-tabs-forward
-                                        ; lispy
- :n "gc" #'lispyville-comment-or-uncomment
- :n "M-s" #'paredit-splice-sexp
                                         ; misc
- :n "d" #'evil-delete-into-null-register
  :n "-" #'dired-jump
  :n "s-t" #'magit-pull-from-upstream
  :nv "s-d" #'evil-multiedit-match-and-next
@@ -36,9 +32,23 @@
  :ne "C-;" #'avy-goto-char-2
  :nv "C-SPC" #'+fold/toggle)
 
+
+;; lisp specific mappings
+(map! :after common-lisp-mode
+      :map emacs-lisp-mode-map
+
+      :n "d" #'evil-delete-into-null-register
+      :n "gc" #'lispyville-comment-or-uncomment
+      :n "M-s" #'paredit-splice-sexp)
+
 ;; clojure specific mappings
 (map! :after clojure-mode
       :map clojure-mode-map
+
+      :n "d" #'evil-delete-into-null-register
+      :n "gc" #'lispyville-comment-or-uncomment
+      :n "M-s" #'paredit-splice-sexp
+
       :localleader
 
       :desc "Insert '#nu/tapd' before word"
