@@ -89,16 +89,16 @@
 (add-to-list 'company-backends #'company-tabnine)
 
 ;; Aggressive indent
-(use-package! aggressive-indent
-  :hook ((common-lisp-mode . aggressive-indent-mode)
-         (emacs-lisp-mode . aggressive-indent-mode)
-         (clojure-mode . aggressive-indent-mode))
-  :config
-  (setq aggressive-indent-sit-for-time 0.2)
-  (add-to-list
-   'aggressive-indent-dont-indent-if
-   '(and (stringp buffer-file-name)
-         (string-match "\\.edn\\'" buffer-file-name))))
+;; (use-package! aggressive-indent
+;;   :hook ((common-lisp-mode . aggressive-indent-mode)
+;;          (emacs-lisp-mode . aggressive-indent-mode)
+;;          (clojure-mode . aggressive-indent-mode))
+;;   :config
+;;   (setq aggressive-indent-sit-for-time 0.2)
+;;   (add-to-list
+;;    'aggressive-indent-dont-indent-if
+;;    '(and (stringp buffer-file-name)
+;;          (string-match "\\.edn\\'" buffer-file-name))))
 
 ;; lsp related config
 (setq lsp-ignore-dirs '("[/\\\\][^/\\\\]*\\.\\(json\\|pyc\\|class\\)$"
