@@ -118,14 +118,10 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-lens-enable t
-        lsp-enable-semantic-highlighting t
+        lsp-semantic-tokens-enable t
+        lsp-lens-place-position 'end-of-line
         lsp-signature-auto-activate nil
-        lsp-file-watch-ignored (append lsp-file-watch-ignored lsp-ignore-dirs))
-  (dolist (clojure-all-modes '(clojure-mode
-                               clojurec-mode
-                               clojurescript-mode
-                               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,clojure-all-modes . "clojure")))
+        lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories lsp-ignore-dirs))
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
 (use-package! lsp-ui-mode
