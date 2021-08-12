@@ -11,4 +11,5 @@ target/
 .lein-repl-history
 .nrepl-port
 metals.sbt
+.python-version
 

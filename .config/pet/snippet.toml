@@ -5,6 +5,11 @@
   output = ""
 
 [[snippets]]
+  description = "ssh into EC2 mesos fixed"
+  command = "nu-<country=br> ser ssh mesos-fixed --region us-east-1 --env cantareira --suffix <suffix=stable> --ip <ip=10.130.81.29>"
+  output = ""
+
+[[snippets]]
   description = "Xargs + seq date example"
   command = "for d in $(seq 1 <num-days=30>); do echo <input-to-concat>$(date -d \"<yyyyMMdd> $d days\" +%Y%m%d); done | xargs -P <batch> -n 1 <command>"
   output = ""
@@ -50,8 +55,18 @@
   output = ""
 
 [[snippets]]
+  description = "SSH to Cantareira EC2 instance"
+  command = "nu-br ser ssh mesos-on-demand --region us-east-1 --env cantareira --suffix stable --ip <instance-ip>"
+  output = ""
+
+[[snippets]]
   description = "Repl into service pod"
   command = "nu-<nu=data> k8s repl global <service=metapod> --env <env=staging>"
+  output = ""
+
+[[snippets]]
+  description = "Refresh correnteza attempt-checker on all shards"
+  command = "nu-<nu-br> on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
   output = ""
 
 [[snippets]]
@@ -68,6 +83,11 @@
   description = "Getting path for given resource on dataset-series"
   command = "nu-<country=br> ser curl GET --env <env=staging> global ouroboros /api/admin/debug/resource/<resource-id>"
   tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Get transaction id for given date"
+  command = "nu datainfra hausmeister transaction-id <date=yesterday>"
   output = ""
 
 [[snippets]]
@@ -140,12 +160,17 @@
   output = ""
 
 [[snippets]]
+  description = "Check dataset-series for different schemas"
+  command = "nu dataset-series info <dataset-name> -v"
+  output = ""
+
+[[snippets]]
   description = "Castor snapshots"
   command = "nu-<nu> ser curl GET --env prod global castor /api/snapshots/<country=BR>/<prototype=s2>/<database=pumbaa> | jq ."
   tag = ["nu"]
   output = ""
 
 [[snippets]]
-  description = "Refresh correnteza attempt-checker on all shards"
-  command = "nu-<nu-br> on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
+  description = "Uncommit from BQ output"
+  command = "cat <path_json> | jq -r '.[] | .dataset_name' | xargs -I {} -P 10 nu-br datainfra hausmeister dataset-uncommit <transaction> {} -y"
   output = ""

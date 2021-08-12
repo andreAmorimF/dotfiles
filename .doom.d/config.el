@@ -202,7 +202,7 @@
     "Remove all occurences of '#nu/tapd' in current buffer"
     (interactive)
     (goto-char 1)
-    (while (search-forward "#nu/tapd " nil nil)
+    (while (search-forward " #nu/tapd " nil nil)
       (replace-match ""))))
 
 ;; nu scripts

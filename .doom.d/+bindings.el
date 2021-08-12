@@ -3,14 +3,12 @@
 ;; general mappings
 (map!
                                         ; remove default workspace shortcuts
- :n "C-t" #'better-jumper-jump-backward
  :n "C-S-t" nil
- :i "C-w" (λ! (let (kill-ring) (backward-kill-word 1))) ; C-w does not put deleted word on kill ring
                                         ; move betweeen windows faster in normal mode
- :m "C-h" #'evil-window-left
- :m "C-j" #'evil-window-down
- :m "C-k" #'evil-window-up
- :m "C-l" #'evil-window-right
+ :m "C-a <left>"  #'evil-window-left
+ :m "C-a <down>"  #'evil-window-down
+ :m "C-a <up>"    #'evil-window-up
+ :m "C-a <right>" #'evil-window-right
                                         ; move windows faster in normal mode
  :m "C-S-h" #'+evil/window-move-left
  :m "C-S-j" #'+evil/window-move-down
@@ -26,11 +24,12 @@
  :n "s-t" #'magit-pull-from-upstream
  :nv "s-d" #'evil-multiedit-match-and-next
  :nv "s-D" #'evil-multiedit-match-and-prev
- :v "R" #'evil-multiedit-match-all
+ :nv "R" #'evil-multiedit-match-all
  :n "C-c +" #'evil-numbers/inc-at-pt
  :n "C-c -" #'evil-numbers/dec-at-pt
- :ne "C-;" #'avy-goto-char-2
- :nv "C-SPC" #'+fold/toggle)
+ ;; :ne "C-;" #'avy-goto-char-2
+ :nv "C-SPC" #'+fold/toggle
+ :n "t" #'+popup/toggle)
 
 
 ;; lisp specific mappings
@@ -49,7 +48,13 @@
       :n "gc" #'lispyville-comment-or-uncomment
       :n "M-s" #'paredit-splice-sexp
 
+      :ne "C-e" #'cider-eval-defun-at-point
+      :v "C-e" #'cider-eval-region
+
       :localleader
+
+      :desc "Load buffer and switch to repl"
+      "l" #'cider-load-buffer-and-switch-to-repl-buffer
 
       :desc "Insert '#nu/tapd' before word"
       "d" #'nutap
