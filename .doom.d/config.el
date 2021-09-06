@@ -121,10 +121,13 @@
         lsp-semantic-tokens-enable t
         lsp-lens-place-position 'end-of-line
         lsp-signature-auto-activate nil
+        lsp-completion-sort-initial-results t
+        lsp-completion-no-cache t
+        lsp-completion-use-last-result nil
         lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories lsp-ignore-dirs))
   (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
 
-(use-package! lsp-ui-mode
+(use-package! lsp-ui
   :after lsp-mode
   :commands lsp-ui-mode
   :config
@@ -134,12 +137,19 @@
         lsp-ui-doc-enable t
         lsp-ui-doc-include-signature t
         lsp-ui-doc-use-childframe t
-        lsp-ui-sideline-show-hover t
+        lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-ignore-duplicate t
         lsp-ui-sideline-show-code-actions nil
-        lsp-ui-sideline-show-symbol t
+        lsp-ui-sideline-show-symbol nil
+        lsp-completion-provider :company-mode
+        lsp-completion-show-detail t
+        lsp-completion-show-kind t
         lsp-ui-doc-border (doom-color 'fg)
         lsp-ui-peek-fontify 'always))
+
+(use-package! lsp-treemacs
+  :config
+  (setq lsp-treemacs-error-list-current-project-only t))
 
 ;; clojure related plugins configuration
 (use-package! cider
@@ -147,8 +157,11 @@
   :config
   (setq cider-ns-refresh-show-log-buffer t
         cider-show-error-buffer 'only-in-repl
+        cider-eldoc-display-for-symbol-at-point nil ; use lsp
         cider-prompt-for-symbol nil)
-  (set-lookup-handlers! 'cider-mode nil))
+  (set-lookup-handlers! 'cider-mode nil)
+  (add-hook 'cider-mode-hook (lambda () (remove-hook 'completion-at-point-functions #'cider-complete-at-point))) ; use lsp
+  )
 
 (use-package! clj-refactor
   :after clojure-mode
