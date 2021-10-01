@@ -138,5 +138,3 @@ eval "$(pyenv init -)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
 [[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/bitcomplete bit

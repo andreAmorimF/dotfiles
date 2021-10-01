@@ -40,7 +40,6 @@ Plug 'mbbill/undotree'
 Plug 'terryma/vim-multiple-cursors'
 
 " Git stuff
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Statusline plugin
