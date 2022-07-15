@@ -87,6 +87,7 @@
       company-idle-delay 0.5)
 
 (add-to-list 'company-backends #'company-tabnine)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Aggressive indent
 ;; (use-package! aggressive-indent
@@ -125,7 +126,7 @@
         lsp-completion-no-cache t
         lsp-completion-use-last-result nil
         lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories lsp-ignore-dirs))
-  (advice-add #'lsp-rename :after (lambda (&rest _) (projectile-save-project-buffers))))
+  (add-hook 'lsp-after-apply-edits-hook (lambda (&rest _) (save-buffer))))
 
 (use-package! lsp-ui
   :after lsp-mode
@@ -222,7 +223,16 @@
 (let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
-    (require 'nu)))
+    (require 'nu nil t)))
+
+(use-package isa
+  :load-path "~/Workspace/nubank/isa.el"
+  :config
+  ;; if you use vim keys
+  (map! :leader
+	:desc "isa" "N i" #'isa)
+  ;; if you use emacs keys
+  (define-key global-map (kbd "C-c i") #'isa))
 
 ;; Other windows rules
 (after! magit
