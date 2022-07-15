@@ -15,3 +15,7 @@
 	rebase = false
 [includeIf "gitdir:/Users/andredeamorimfonseca/Workspace/nubank/"]
 	path = /Users/andredeamorimfonseca/.nugitconfig
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
