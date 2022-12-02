@@ -136,9 +136,16 @@ eval "$(pyenv init -)"
 export LOCAL_BIN_PATH="$HOME/.local/bin"
 export PATH="$LOCAL_BIN_PATH:$PATH"
 
+# Adding coursier bin to path
+export PATH="$PATH:/Users/andredeamorimfonseca/Library/Application Support/Coursier/bin"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
 [[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
+
+# Wasmer
+export WASMER_DIR="/Users/andredeamorimfonseca/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"

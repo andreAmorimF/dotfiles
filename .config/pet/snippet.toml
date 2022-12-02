@@ -31,6 +31,11 @@
   output = ""
 
 [[snippets]]
+  description = "Uncommit from BQ output"
+  command = "cat <path_json> | jq -r '.[] | .dataset_name' | xargs -I {} -P 10 nu-br datainfra hausmeister dataset-uncommit <transaction> {} -y"
+  output = ""
+
+[[snippets]]
   description = "Uncommit dataset and predecessors"
   command = "nu datainfra hausmeister dataset-uncommit <transaction-id> <dataset-name> --include-predecessors"
   tag = ["nu"]
@@ -94,6 +99,11 @@
   description = "Force attempt checker on all correnteza shards"
   command = "nu on-shards run -- ser curl POST % correnteza /ops/attempt-checker/force"
   tag = ["nu"]
+  output = ""
+
+[[snippets]]
+  description = "Find customer details"
+  command = "nu cu find <cpf-or-email>"
   output = ""
 
 [[snippets]]
@@ -171,6 +181,6 @@
   output = ""
 
 [[snippets]]
-  description = "Uncommit from BQ output"
-  command = "cat <path_json> | jq -r '.[] | .dataset_name' | xargs -I {} -P 10 nu-br datainfra hausmeister dataset-uncommit <transaction> {} -y"
+  description = "Force greyjoy claim"
+  command = "nu-br ser curl POST global --env prod greyjoy \"/api/models/claim\" -- -v"
   output = ""
