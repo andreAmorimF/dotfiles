@@ -19,7 +19,7 @@
        ;;japanese
 
        :completion
-       (company)           ; the ultimate code completion backend
+       company             ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;(ivy +fuzzy)      ; a search engine for love and life
@@ -39,13 +39,12 @@
        nav-flash           ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints             ; highlight the region an operation acts on
-       (popup +all
-              +defaults)      ; tame sudden yet inevitable temporary windows
+       (popup +defaults)      ; tame sudden yet inevitable temporary windows
        ;; ligatures           ; ligatures or substitute text with pretty symbols
        tabs                   ; an tab bar for Emacs
-       (treemacs +lsp)        ; a project drawer, like neotree but cooler
+       treemacs               ; a project drawer, like neotree but cooler
        ;; unicode             ; extended unicode support for various languages
-       vc-gutter              ; vcs diff in the fringe
+       (vc-gutter +pretty)    ; vcs diff in the fringe
        vi-tilde-fringe        ; fringe tildes to mark beyond EOB
        window-select          ; visually switch windows
        workspaces             ; tab emulation, persistence & separate workspaces
@@ -55,7 +54,7 @@
        (evil +everywhere)               ; come to the dark side, we have cookies
        file-templates                   ; auto-snippets for empty files
        fold                             ; (nigh) universal code folding
-       (format)                         ; automated prettiness
+       format                           ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        lispy                       ; vim for lisp, for people who don't like vim
        multiple-cursors            ; editing in many places at once
@@ -77,7 +76,7 @@
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
-       vterm                            ; the best terminal emulation in Emacs
+       ;;vterm                            ; the best terminal emulation in Emacs
 
        :checkers
        syntax                        ; tasing you for every semicolon you forget
@@ -88,7 +87,7 @@
        ansible
        debugger              ; FIXME stepping through code, to help you add bugs
        ;;direnv
-       (docker +lsp)
+       ;; (docker +lsp)
        ;; editorconfig      ; let someone else argue about tabs vs spaces
        ;; ein            ; tame Jupyter notebooks with emacs
        (eval +overlay)                ; run code, run (also, repls)
@@ -115,8 +114,7 @@
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
-       (dart +flutter
-             +lsp)                  ; paint ui and not much else
+       ;;(dart +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp                       ; drown in parentheses
@@ -134,7 +132,7 @@
        (java +meghanada +lsp)      ; the poster child for carpal tunnel syndrome
        (javascript +lsp)           ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
-       kotlin                           ; a better, slicker Java(Script)
+       ;;kotlin                           ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
@@ -157,7 +155,7 @@
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        (ruby +rails +lsp) ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +lsp)         ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (scala +lsp)      ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        (sh +lsp)            ; she sells {ba,z,fi}sh shells on the C xor
@@ -174,7 +172,7 @@
        ;;(wanderlust +gmail)
 
        :os
-       macos                            ; MacOS-specific commands
+       ;;macos             ; MacOS-specific commands
 
        :app
        ;;calendar

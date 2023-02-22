@@ -12,4 +12,5 @@ target/
 .nrepl-port
 metals.sbt
 .python-version
+.sdkmanrc
 

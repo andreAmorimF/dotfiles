@@ -14,7 +14,7 @@ set mouse=a
 set number
 
 " access system clipboard instead of vim internal clipboard
-set clipboard=unnamed
+set clipboard+=unnamedplus
 
 " changing leaders
 let mapleader=','
@@ -125,11 +125,11 @@ nnoremap <Space>/ :RG<CR>
 " fuzzy search word under the cursor
 nnoremap <Space>* :RG <C-r><C-w><CR>
 
-" copy to system dashboard
+" copy to system clipboard
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" copy from system dashboard
+" copy from system clipboard
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
@@ -164,9 +164,6 @@ inoremap <C-S-Right> <C-\><C-O>gh<C-O>w
 
 " add nu tap
 map <leader>nt F<space><space>i#nu/tapd<space><esc>
-
-" remove all nu taps
-map <leader>rnt :%s/#nu\/tapd<space>//g<CR><ESC>
 
 " toggle nerdtree
 nmap <Space>t :NERDTreeToggle<CR>

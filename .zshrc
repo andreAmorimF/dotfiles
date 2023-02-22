@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/andredeamorimfonseca/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -73,7 +73,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
+plugins=(git fzf sudo docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,10 +112,10 @@ export FZF_DEFAULT_COMMAND='rg --hidden --files'
 # alias cat="bat"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/.google/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andredeamorimfonseca/.google/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/.google/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google/google-cloud-sdk/completion.zsh.inc"; fi
 
 # BEGIN ANSIBLE MANAGED BLOCK - RBENV
 eval "$(rbenv init -)"
@@ -124,8 +124,8 @@ eval "$(rbenv init -)"
 # Virtualenv wrapper configuration
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper_lazy.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Pyenv configuration
 export PYENV_ROOT="$HOME/.pyenv"
@@ -137,15 +137,11 @@ export LOCAL_BIN_PATH="$HOME/.local/bin"
 export PATH="$LOCAL_BIN_PATH:$PATH"
 
 # Adding coursier bin to path
-export PATH="$PATH:/Users/andredeamorimfonseca/Library/Application Support/Coursier/bin"
+export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/andredeamorimfonseca/.sdkman"
-[[ -s "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/andredeamorimfonseca/.sdkman/bin/sdkman-init.sh"
-
-# Wasmer
-export WASMER_DIR="/Users/andredeamorimfonseca/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

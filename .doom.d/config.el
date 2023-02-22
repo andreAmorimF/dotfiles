@@ -77,7 +77,7 @@
 ;; treemacs
 (setq treemacs-follow-mode t)
 
-;; evil-matchit
+;; evil properties
 (setq global-evil-matchit-mode 1)
 
 ;; company
@@ -224,15 +224,6 @@
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu nil t)))
-
-(use-package isa
-  :load-path "~/Workspace/nubank/isa.el"
-  :config
-  ;; if you use vim keys
-  (map! :leader
-	:desc "isa" "N i" #'isa)
-  ;; if you use emacs keys
-  (define-key global-map (kbd "C-c i") #'isa))
 
 ;; Other windows rules
 (after! magit

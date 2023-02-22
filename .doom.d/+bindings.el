@@ -17,18 +17,21 @@
                                         ; move centaur tabs
  :m "gT" #'centaur-tabs-backward
  :m "gt" #'centaur-tabs-forward
- :m "s-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
- :m "s-}" #'centaur-tabs-forward
+ :m "C-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
+ :m "C-}" #'centaur-tabs-forward
                                         ; misc
  :n "-" #'dired-jump
- :n "s-t" #'magit-pull-from-upstream
- :nv "s-d" #'evil-multiedit-match-and-next
- :nv "s-D" #'evil-multiedit-match-and-prev
+ :n "C-t" #'magit-pull-from-upstream
+ :nv "C-d" #'evil-multiedit-match-and-next
+ :nv "C-D" #'evil-multiedit-match-and-prev
  :nv "R" #'evil-multiedit-match-all
  :n "C-c +" #'evil-numbers/inc-at-pt
  :n "C-c -" #'evil-numbers/dec-at-pt
  ;; :ne "C-;" #'avy-goto-char-2
- :n "t" #'+popup/toggle)
+ :n "t" #'+popup/toggle
+ :i "C-s" #'save-buffer
+ :i "C-z" #'undo-fu-only-undo
+ :i "C-S-z" #'undo-fu-only-redo)
 
 
 ;; lisp specific mappings
@@ -47,7 +50,7 @@
       :n "gc" #'lispyville-comment-or-uncomment
       :n "M-s" #'paredit-splice-sexp
 
-      :ne "C-e" #'cider-eval-defun-at-point
+      :n "C-e" #'cider-eval-defun-at-point
       :v "C-e" #'cider-eval-region
 
       :localleader
