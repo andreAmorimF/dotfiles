@@ -4,6 +4,8 @@
 (map!
                                         ; remove default workspace shortcuts
  :n "C-S-t" nil
+ :n "C-t" nil
+ :ni "C-\\" nil
                                         ; move betweeen windows faster in normal mode
  :m "C-a <left>"  #'evil-window-left
  :m "C-a <down>"  #'evil-window-down
@@ -29,9 +31,9 @@
  :n "C-c -" #'evil-numbers/dec-at-pt
  ;; :ne "C-;" #'avy-goto-char-2
  :n "t" #'+popup/toggle
- :i "C-s" #'save-buffer
- :i "C-z" #'undo-fu-only-undo
- :i "C-S-z" #'undo-fu-only-redo)
+ :nvi "C-s" #'save-buffer
+ :ni "C-z" #'undo-fu-only-undo
+ :ni "C-S-z" #'undo-fu-only-redo)
 
 
 ;; lisp specific mappings
@@ -49,6 +51,8 @@
       :n "d" #'evil-delete-into-null-register
       :n "gc" #'lispyville-comment-or-uncomment
       :n "M-s" #'paredit-splice-sexp
+
+      :ni "C-\\" #'cider-switch-to-repl-buffer
 
       :n "C-e" #'cider-eval-defun-at-point
       :v "C-e" #'cider-eval-region
@@ -77,7 +81,7 @@
 (map! :after lsp-mode
       :map lsp-ui-mode-map
       :n "gd" #'lsp-ui-peek-find-definitions
-      :n "s-b" #'lsp-ui-peek-find-definitions ; idea-like
+      :n "C-b" #'lsp-ui-peek-find-definitions ; idea-like
       :n "gr" #'lsp-ui-peek-find-references
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)
