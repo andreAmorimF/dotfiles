@@ -52,7 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '((getenv "NU_HOME") "~/Workspace/others/cardano")
+(setq projectile-project-search-path '("~/Workspace/nubank" "~/Workspace/others/cardano")
       projectile-enable-caching nil)
 
 ;; Reload buffers when modified on disk
