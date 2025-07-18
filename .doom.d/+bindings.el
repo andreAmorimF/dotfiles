@@ -86,6 +86,12 @@
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)
 
+(after! aidermacs
+  (map! :leader
+
+        :desc "Aidermacs"
+        "=" #'aidermacs-transient-menu))
+
 ;;  "d" do not copy into register, just deletes
 (evil-define-operator evil-delete-into-null-register (beg end type register yank-handler)
   "Delete text from BEG to END with TYPE. Do not save it in any register."

@@ -2,8 +2,8 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+(setq explicit-shell-file-name "/bin/zsh")
+(setq explicit-zsh-args '("--interactive" "--login"))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -52,7 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq projectile-project-search-path '("~/Workspace/nubank" "~/Workspace/others/cardano")
+(setq projectile-project-search-path '((getenv "NU_HOME") "~/Workspace/others/cardano")
       projectile-enable-caching nil)
 
 ;; Reload buffers when modified on disk
@@ -82,9 +82,9 @@
 
 ;; company
 (setq company-selection-wrap-around t
-      company-tooltip-align-annotations t
-      company-show-numbers t
-      company-idle-delay 0.5)
+       company-tooltip-align-annotations t
+       company-show-numbers t
+       company-idle-delay 0.5)
 
 (add-to-list 'company-backends #'company-tabnine)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -125,6 +125,8 @@
         lsp-completion-sort-initial-results t
         lsp-completion-no-cache t
         lsp-completion-use-last-result nil
+        lsp-copilot-enabled t
+        lsp-inlay-hint-enable t
         lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories lsp-ignore-dirs))
   (add-hook 'lsp-after-apply-edits-hook (lambda (&rest _) (save-buffer))))
 
@@ -219,8 +221,44 @@
     (while (search-forward " #nu/tapd " nil nil)
       (replace-match ""))))
 
+(use-package! copilot
+  :hook ((clojure-mode . copilot-mode)
+         (clojure-ts-mode . copilot-mode)
+         (clojurec-mode . copilot-mode)
+         (clojurescript-mode . copilot-mode)
+         (emacs-lisp-mode . copilot-mode)
+         (prog-mode . copilot-mode))
+  :config
+  (setq copilot-indent-offset-warning-disable t)
+  :bind (:map copilot-completion-map
+              ("C-<return>" . 'copilot-accept-completion)
+              ("M-n" . 'copilot-next-completion)
+              ("M-p" . 'copilot-previous-completion)))
+
+(use-package ellama
+  :custom
+  (llm-warn-on-nonfree nil))
+
+(use-package nu-llm
+  :after ellama
+  :load-path (lambda () (expand-file-name "nu-llm.el" (getenv "NU_HOME")))
+  :config
+  ;; Add the Nu OpenAI LLM provider.
+  (add-to-list 'ellama-providers (cons "Nu OpenAI" (nu-llm-make-openai)))
+  ;; Set the default provider to the one we just added (optional).
+  (setq ellama-provider (alist-get "Nu OpenAI" ellama-providers nil nil #'string=)))
+
+(use-package! aidermacs
+  :config
+  (set-popup-rule! "\\*aidermacs.*\\*" :side 'right :width 0.4)
+  (require 'aidermacs-backend-vterm)
+  (setq aidermacs-auto-accept-architect t
+        aidermacs-default-chat-mode t
+        aidermacs-extra-args '("--no-git")
+        aidermacs-config-file (expand-file-name "nudev/aider/.aider.conf.yml" (getenv "NU_HOME"))))
+
 ;; nu scripts
-(let ((nudev-emacs-path "~/Workspace/nubank/nudev/ides/emacs/"))
+(let ((nudev-emacs-path (concat (getenv "NU_HOME") "/nudev/ides/emacs/")))
   (when (file-directory-p nudev-emacs-path)
     (add-to-list 'load-path nudev-emacs-path)
     (require 'nu nil t)))

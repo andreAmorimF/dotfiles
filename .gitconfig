@@ -1,10 +1,11 @@
 [filter "lfs"]
-	smudge = git-lfs smudge --skip %f
+	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	clean = git-lfs clean -- %f
 	required = true
 [user]
 	email = 1077309+andreAmorimF@users.noreply.github.com
+	name = André Fonseca
 [core]
 	editor = nvim
 	excludesfile = /home/andrefonseca/.gitignore

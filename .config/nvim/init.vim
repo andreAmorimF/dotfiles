@@ -14,7 +14,7 @@ set mouse=a
 set number
 
 " access system clipboard instead of vim internal clipboard
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 
 " changing leaders
 let mapleader=','

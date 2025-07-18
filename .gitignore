@@ -13,4 +13,6 @@ target/
 metals.sbt
 .python-version
 .sdkmanrc
+.vscode/
+.aider.*
 

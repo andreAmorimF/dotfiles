@@ -132,12 +132,16 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# Difftastic to git
+export TMPDIR=~/tmp 
+export GIT_EXTERNAL_DIFF="difftastic"
+
 # Local bin folder to path
 export LOCAL_BIN_PATH="$HOME/.local/bin"
 export PATH="$LOCAL_BIN_PATH:$PATH"
 
-# Adding coursier bin to path
-export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
+# Krew bin path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
