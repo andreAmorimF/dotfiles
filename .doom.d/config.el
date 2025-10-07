@@ -119,14 +119,17 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil
         lsp-lens-enable t
-        lsp-semantic-tokens-enable t
         lsp-lens-place-position 'end-of-line
         lsp-signature-auto-activate nil
         lsp-completion-sort-initial-results t
         lsp-completion-no-cache t
         lsp-completion-use-last-result nil
         lsp-copilot-enabled t
+        lsp-semantic-tokens-enable t
         lsp-inlay-hint-enable t
+        lsp-use-plists t
+        lsp-semgrep-languages nil
+        lsp-disabled-clients '(semgrep-ls)
         lsp-file-watch-ignored-directories (append lsp-file-watch-ignored-directories lsp-ignore-dirs))
   (add-hook 'lsp-after-apply-edits-hook (lambda (&rest _) (save-buffer))))
 
