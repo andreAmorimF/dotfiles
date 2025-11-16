@@ -63,7 +63,7 @@
       "l" #'cider-load-buffer-and-switch-to-repl-buffer
 
       :desc "Insert '#nu/tapd' before word"
-      "d" #'nutap
+      "C-d" #'nutap
 
       :desc "Ident buffer/region"
       "=" #'clojure-align

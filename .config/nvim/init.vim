@@ -47,7 +47,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " REPL integration
-Plug 'Olical/conjure', { 'tag': 'v4.1.0' } "check if this is still the latest version
+Plug 'Olical/conjure'
 
 " Static analysis
 Plug 'dense-analysis/ale', {'for': 'clojure'}
@@ -100,7 +100,6 @@ let g:jellybeans_use_term_italics = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_skip_empty_sections = 1
 let g:airline_highlighting_cache = 1
 
 " Set this. Airline will handle the rest.

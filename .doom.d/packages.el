@@ -17,6 +17,7 @@
 (package! ellama)
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el" "dist")))
+(package! eca :recipe (:host github :repo "editor-code-assistant/eca-emacs" :files ("*.el")))
 ;; (package! lispyville)
 
 ;; To install a package directly from a remote git repo, you must specify a
