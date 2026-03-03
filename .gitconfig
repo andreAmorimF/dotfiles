@@ -6,21 +6,20 @@
 [user]
 	email = 1077309+andreAmorimF@users.noreply.github.com
 	name = André Fonseca
+	signingkey = DEC232D5B763D8A8
 [core]
 	editor = nvim
-	excludesfile = /home/andrefonseca/.gitignore
-	attributesfile = /home/andrefonseca/.gitattributes
+	excludesfile = /Users/andre.fonseca/.gitignore
+	attributesfile = /Users/andre.fonseca/.gitattributes
 [pull]
 	rebase = false
-[includeIf "gitdir:/home/andrefonseca/Workspace/nubank/"]
-	path = /home/andrefonseca/.nugitconfig
+[includeIf "gitdir:/Users/andre.fonseca/Workspace/nubank/"]
+	path = /Users/andre.fonseca/.nugitconfig
 [init]
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

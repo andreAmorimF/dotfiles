@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -73,7 +73,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf sudo fancy-ctrl-z lein pip sbt taskwarrior systemd virtualenv virtualenvwrapper z)
+plugins=(git fzf sudo fancy-ctrl-z lein pip sbt taskwarrior systemd virtualenv z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,20 +121,21 @@ if [ -f "$HOME/.google/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.go
 eval "$(rbenv init -)"
 # END ANSIBLE MANAGED BLOCK - RBENV
 
-# Virtualenv wrapper configuration
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
-
 # Pyenv configuration
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Difftastic to git
-export TMPDIR=~/tmp 
-export GIT_EXTERNAL_DIFF="difftastic"
+# Virtualenv wrapper configuration
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Workspace
+_vw_script=$(pyenv which virtualenvwrapper.sh 2>/dev/null)
+if [[ -f "$_vw_script" ]]; then
+  export VIRTUALENVWRAPPER_SCRIPT="$_vw_script"
+  source "$_vw_script"
+fi
+unset _vw_script
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
 # Local bin folder to path
 export LOCAL_BIN_PATH="$HOME/.local/bin"

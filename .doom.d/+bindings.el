@@ -19,11 +19,11 @@
                                         ; move centaur tabs
  :m "gT" #'centaur-tabs-backward
  :m "gt" #'centaur-tabs-forward
- :m "C-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
- :m "C-}" #'centaur-tabs-forward
+ :m "s-{" #'centaur-tabs-backward       ; idea-like move centaur tabs
+ :m "s-}" #'centaur-tabs-forward
                                         ; misc
  :n "-" #'dired-jump
- :n "C-t" #'magit-pull-from-upstream
+ :n "s-t" #'magit-pull-from-upstream
  :nv "C-d" #'evil-multiedit-match-and-next
  :nv "C-D" #'evil-multiedit-match-and-prev
  :nv "R" #'evil-multiedit-match-all
@@ -54,8 +54,8 @@
 
       :ni "C-\\" #'cider-switch-to-repl-buffer
 
-      :n "C-e" #'cider-eval-defun-at-point
-      :v "C-e" #'cider-eval-region
+      :n "s-e" #'cider-eval-defun-at-point
+      :v "s-e" #'cider-eval-region
 
       :localleader
 
@@ -63,13 +63,13 @@
       "l" #'cider-load-buffer-and-switch-to-repl-buffer
 
       :desc "Insert '#nu/tapd' before word"
-      "C-d" #'nutap
+      "td" #'nutap
 
       :desc "Ident buffer/region"
       "=" #'clojure-align
 
       :desc "Clean all '#nu/tapd' occurences in current buffer"
-      "D" #'nutap-clean)
+      "tD" #'nutap-clean)
 
 (map! :after lsp-mode
       :map lsp-ui-peek-mode-map
@@ -81,7 +81,7 @@
 (map! :after lsp-mode
       :map lsp-ui-mode-map
       :n "gd" #'lsp-ui-peek-find-definitions
-      :n "C-b" #'lsp-ui-peek-find-definitions ; idea-like
+      :n "s-b" #'lsp-ui-peek-find-definitions ; idea-like
       :n "gr" #'lsp-ui-peek-find-references
       :n "H"  #'lsp-ui-peek-jump-backward
       :n "L"  #'lsp-ui-peek-jump-forward)

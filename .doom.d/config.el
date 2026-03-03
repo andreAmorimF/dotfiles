@@ -53,7 +53,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (setq projectile-project-search-path '("~/Workspace/nubank" "~/Workspace/others/cardano")
-      projectile-enable-caching nil)
+      projectile-enable-caching nil
+      projectile-ignored-projects '("~/.config/emacs/"))
 
 ;; Reload buffers when modified on disk
 (setq global-auto-revert-mode t)

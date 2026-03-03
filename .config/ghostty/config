@@ -1,0 +1,88 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /Users/andre.fonseca/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+
+# Initialize tmux
+command = /opt/homebrew/bin/tmux new-session -A -s main
+
+# Start without an initial window — use F12 to summon the quick terminal
+initial-window = false
+
+# --- Yakuake-style quick terminal ---
+# Drop-down position and size (height,width — secondary axis defaults to 100%)
+quick-terminal-position = top
+quick-terminal-size = 70%,85%
+# Animate slide-in in seconds (set to 0 to disable)
+quick-terminal-animation-duration = 0.2
+# Auto-hide when focus is lost (like Yakuake)
+quick-terminal-autohide = true
+
+# Semi-transparent background (0.0 = fully transparent, 1.0 = opaque)
+background-opacity = 0.85
+background-blur-radius = 20
+
+# Toggle quick terminal with F12 (matches Yakuake default)
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# --- Theme ---
+theme = Catppuccin Mocha
+
+# --- Font ---
+font-thicken = true
+
+# --- Cursor ---
+cursor-style = bar
+cursor-style-blink = true
+mouse-hide-while-typing = true
+
+# --- Shell integration ---
+shell-integration-features = cursor,sudo,title
+
+# --- macOS titlebar ---
+macos-titlebar-style = tabs
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
