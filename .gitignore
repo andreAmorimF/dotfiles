@@ -15,5 +15,4 @@ metals.sbt
 .sdkmanrc
 .vscode/
 .aider.*
-.claude/
 .clj-kondo/
