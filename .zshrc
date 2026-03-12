@@ -141,6 +141,9 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export LOCAL_BIN_PATH="$HOME/.local/bin"
 export PATH="$LOCAL_BIN_PATH:$PATH"
 
+# Gnu bin to path
+export PATH="$(brew --prefix)/opt/make/libexec/gnubin:$PATH"
+
 # Krew bin path
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 

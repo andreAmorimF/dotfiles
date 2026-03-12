@@ -66,6 +66,13 @@ shell-integration-features = cursor,sudo,title
 
 # --- macOS titlebar ---
 macos-titlebar-style = tabs
+
+# Link url
+link-url=true
+
+# Copy to select
+copy-on-select = clipboard
+
 #
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
